@@ -20,10 +20,10 @@
     "mkdirp": "^0.5.1",
     "requirejs": "^2.2.0",
     "rimraf": "^2.5.4",
-    "rollup": "^0.34.7",
+    "rollup": "^2.59.0",
     "serve": "^1.4.0",
     "uglify-js": "^2.7.0",
-    "webpack": "^1.13.1"
+    "webpack": "^5.63.0"
   },
   "devDependencies": {},
   "keywords": [],
