@@ -12,20 +12,20 @@
   },
   "dependencies": {
     "almond": "^0.3.2",
-    "browserify": "^13.1.0",
     "buble": "^0.13.1",
     "bundle-collapser": "^1.2.1",
-    "closurecompiler": "^1.6.0",
     "lodash.times": "^4.3.2",
     "mkdirp": "^0.5.1",
     "requirejs": "^2.2.0",
     "rimraf": "^2.5.4",
-    "rollup": "^0.34.7",
+    "rollup": "^2.59.0",
     "serve": "^1.4.0",
-    "uglify-js": "^2.7.0",
-    "webpack": "^1.13.1"
+    "terser": "^5.9.0",
+    "webpack": "^5.63.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack-cli": "^4.9.1"
+  },
   "keywords": [],
   "author": "Nolan Lawson <nolan@nolanlawson.com>",
   "license": "Apache-2.0"

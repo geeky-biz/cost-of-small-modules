@@ -22,17 +22,8 @@ for num in 100 1000 5000; do
   echo "console.log(total)" >> lib/cjs-${num}/index.js
   echo "console.log(total)" >> lib/es6-${num}/index.js
 
-  browserify ./lib/cjs-${num} > dist/browserify-${num}.js
-  browserify -p bundle-collapser/plugin ./lib/cjs-${num} > dist/browserify-collapsed-${num}.js
-  webpack -p --entry ./lib/cjs-${num} --output-filename dist/webpack-${num}.js >/dev/null
-  rollup --format iife ./lib/es6-${num}/index.js > dist/rollup-${num}.js
-  ccjs lib/es6-${num}/* --compilation_level=ADVANCED_OPTIMIZATIONS \
-    --language_in=ECMASCRIPT6_STRICT --output_wrapper="(function() {%output%})()" > dist/closure-${num}.js
-  r.js -convert lib/cjs-${num} lib/amd-${num}
-  r.js -o baseUrl=lib/amd-${num} paths.requireLib=../../node_modules/requirejs/require name=index \
-    include=requireLib out=dist/rjs-${num}.js optimize=none logLevel=4
-  r.js -o baseUrl=lib/amd-${num} paths.almond=../../node_modules/almond/almond name=index \
-    include=almond out=dist/rjs-almond-${num}.js optimize=none logLevel=4
+  webpack --entry ./lib/cjs-${num} --output-filename webpack-${num}.js >/dev/null
+  rollup --format iife --file=dist/rollup-${num}.js -- ./lib/es6-${num}/index.js
 
 done
 
@@ -42,7 +33,7 @@ for file in dist/*; do
 done
 
 for file in dist/*; do
-  uglifyjs -mc < $file > "$(echo $file | sed 's/\.js/\.min.js/')"
+  terser $file > "$(echo $file | sed 's/\.js/\.min.js/')"
 done
 
 buble script.js > script.es5.js
